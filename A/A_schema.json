@@ -1,0 +1,306 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "조사자 A (정책현장·행정 워크플로우) CSV 파일 스키마 정의서",
+  "version": "1.0.0",
+  "generated_at": "2026-08-13",
+  "files": [
+
+    {
+      "file_id": "A1",
+      "file_name": "A1_actor_registry.csv",
+      "description": "인천광역시 6대 전략산업 관련 조직·부서·팀·역할·결정권한 레지스트리",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "columns": [
+        {
+          "name": "organization",
+          "korean": "기관명",
+          "type": "string",
+          "required": true,
+          "description": "최상위 기관 명칭",
+          "examples": ["인천광역시", "인천광역시의회", "인천테크노파크"],
+          "allowed_values": null,
+          "max_length": 50,
+          "notes": "시청 본청, 산하 기관, 의회 구분"
+        },
+        {
+          "name": "department",
+          "korean": "부서(국/실/직속기관)",
+          "type": "string",
+          "required": true,
+          "description": "국·실·직속 단위 부서명",
+          "examples": ["미래산업국", "기획조정실", "해양항공국", "정무부시장직속", "산업경제위원회"],
+          "allowed_values": null,
+          "max_length": 50,
+          "notes": "국 단위 또는 직속 단위까지만 기재"
+        },
+        {
+          "name": "team",
+          "korean": "팀(과/담당관/센터)",
+          "type": "string",
+          "required": true,
+          "description": "과·담당관·센터 단위 세부 팀명",
+          "examples": ["반도체바이오과", "미래모빌리티과", "예산담당관", "교육협력담당관", "전문위원실"],
+          "allowed_values": null,
+          "max_length": 60,
+          "notes": "복수 센터는 '/'로 병기 가능"
+        },
+        {
+          "name": "role_title",
+          "korean": "직위/역할명",
+          "type": "string",
+          "required": true,
+          "description": "해당 팀에서의 직위 또는 역할 명칭 (인사이동 대비 직위 중심 기재)",
+          "examples": ["팀장/주무관", "수석전문위원", "전담PD/팀장", "센터장/팀장"],
+          "allowed_values": null,
+          "max_length": 50,
+          "notes": "개인 이름보다 직위·역할 우선. 복수 직위는 '/'로 병기"
+        },
+        {
+          "name": "public_name_if_any",
+          "korean": "공개 팀·부서 별칭",
+          "type": "string",
+          "required": false,
+          "description": "공식 홈페이지·공고문에서 통용되는 별칭 또는 팀 명칭",
+          "examples": ["바이오산업팀", "RISE추진팀", "청년일자리팀", "산경위 전문위원"],
+          "allowed_values": null,
+          "max_length": 60,
+          "notes": "없으면 공란 처리 가능"
+        },
+        {
+          "name": "statutory_function",
+          "korean": "법정 소관 사무",
+          "type": "string",
+          "required": true,
+          "description": "해당 부서·팀의 공식 법령·조례 기반 소관 사무 요약",
+          "examples": ["바이오·반도체 정책 수립, 바이오특화단지 및 소부장 육성"],
+          "allowed_values": null,
+          "max_length": 200,
+          "notes": "공식 사무분장 또는 조례 근거 기준. 추론은 추론임을 명시"
+        },
+        {
+          "name": "decision_right",
+          "korean": "결정권한",
+          "type": "string",
+          "required": true,
+          "description": "해당 부서·팀이 실제 행사하는 의사결정 권한 요약",
+          "examples": ["사업계획 발의·예산 요구·공모 대응", "예산안 수정권(삭감/비목 신설 시 동의)"],
+          "allowed_values": null,
+          "max_length": 150,
+          "notes": "공식 결정권과 추정 실무권한은 분리 표시 권장"
+        },
+        {
+          "name": "document_owned",
+          "korean": "보유·작성 문서",
+          "type": "string",
+          "required": true,
+          "description": "해당 부서·팀이 주로 작성하거나 보유하는 핵심 문서 목록",
+          "examples": ["바이오산업 종합계획·사업계획서·보조금 집행지침", "인천광역시 본예산안·추경예산안"],
+          "allowed_values": null,
+          "max_length": 200,
+          "notes": "중간점(·) 구분 나열"
+        },
+        {
+          "name": "public_contact",
+          "korean": "공개 연락처",
+          "type": "string",
+          "required": false,
+          "description": "공식 홈페이지 또는 조직도에 공개된 대표 전화번호",
+          "examples": ["032-440-4282", "032-260-0600"],
+          "allowed_values": null,
+          "max_length": 20,
+          "format": "0XX-XXX-XXXX",
+          "notes": "개인 직통이 아닌 부서 대표 번호만 기재"
+        },
+        {
+          "name": "source_url",
+          "korean": "출처 URL",
+          "type": "string",
+          "required": true,
+          "description": "해당 정보를 확인한 공식 URL",
+          "examples": ["https://www.incheon.go.kr", "https://www.itp.or.kr"],
+          "allowed_values": null,
+          "format": "https://...",
+          "max_length": 300,
+          "notes": "반드시 실제 접근 가능한 공식 URL 기재. URL 없으면 행 등록 금지"
+        },
+        {
+          "name": "as_of",
+          "korean": "기준일",
+          "type": "date",
+          "required": true,
+          "description": "해당 정보의 유효 기준일 (수집일 또는 공문 발행일)",
+          "examples": ["2026-08-13"],
+          "format": "YYYY-MM-DD",
+          "notes": "조직개편 시 갱신 필요"
+        },
+        {
+          "name": "confidence",
+          "korean": "신뢰도",
+          "type": "enum",
+          "required": true,
+          "description": "해당 행 정보 전체의 신뢰 수준",
+          "allowed_values": ["HIGH", "MEDIUM", "LOW"],
+          "value_definitions": {
+            "HIGH": "공식 기관 원문(시청 공고, 조례, 의회 자료)에서 직접 확인",
+            "MEDIUM": "신뢰 가능한 2차 출처(언론, 연구기관 보고서)에서 확인",
+            "LOW": "비공식 또는 간접 자료, 추론 포함"
+          }
+        }
+      ]
+    },
+
+    {
+      "file_id": "A2",
+      "file_name": "A2_decision_calendar.csv",
+      "description": "인천광역시 정책 의사결정 유형별 착수 시기·마감·심의기관·예산경로 달력",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "columns": [
+        {
+          "name": "decision_type",
+          "korean": "결정 유형",
+          "type": "string",
+          "required": true,
+          "description": "정책·예산 의사결정의 종류 분류명",
+          "examples": [
+            "다음 연도 본예산 신규사업",
+            "기존사업 개편/확대",
+            "상반기 추가경정예산(1차 추경)",
+            "하반기 추가경정예산(2차 추경)",
+            "중앙정부/지자체 공모 대응",
+            "RISE 사업계획 수정/연계"
+          ],
+          "allowed_values": null,
+          "max_length": 50
+        },
+        {
+          "name": "practical_start_window",
+          "korean": "실질 착수 기간",
+          "type": "string",
+          "required": true,
+          "description": "부서 내부에서 실무 기획을 시작해야 하는 현실적 시기 범위",
+          "examples": ["04월 01일 ~ 05월 31일", "공모 공고 직후 (수시/연중)"],
+          "format": "MM월 DD일 ~ MM월 DD일 또는 자유기술",
+          "max_length": 60,
+          "notes": "공식 마감 역산 기준. 추론인 경우 confirmed_or_inferred에 표시"
+        },
+        {
+          "name": "formal_deadline",
+          "korean": "공식 마감일",
+          "type": "string",
+          "required": true,
+          "description": "법령·지침·공문에 명시된 공식 제출 마감일 또는 기간",
+          "examples": ["06월 30일 (예산요구서 제출)", "공모 마감일 (공고일로부터 14~30일)"],
+          "format": "MM월 DD일 또는 자유기술",
+          "max_length": 80,
+          "notes": "괄호 안에 문서 종류 병기 권장"
+        },
+        {
+          "name": "required_input",
+          "korean": "필요 입력 문서",
+          "type": "string",
+          "required": true,
+          "description": "해당 결정 유형에서 반드시 준비해야 하는 입력 문서 목록",
+          "examples": ["사업계획서·유사중복 검토서·수요조사서", "추경 사유서·긴급 사업계획서"],
+          "allowed_values": null,
+          "max_length": 200,
+          "notes": "중간점(·) 구분 나열"
+        },
+        {
+          "name": "review_body",
+          "korean": "심의·검토 기관 경로",
+          "type": "string",
+          "required": true,
+          "description": "해당 결정이 통과해야 하는 내부 검토·심의 경로 (화살표로 순서 표시)",
+          "examples": [
+            "부서 내부 검토 -> 기획조정실 사전협의",
+            "담당 과 -> 미래산업국장 결재 -> 시장 방침"
+          ],
+          "format": "단계1 -> 단계2 -> 단계3",
+          "max_length": 150
+        },
+        {
+          "name": "budget_route",
+          "korean": "예산 처리 경로",
+          "type": "string",
+          "required": true,
+          "description": "해당 사업의 예산 요구·심사·확정 경로 및 시기",
+          "examples": [
+            "예산담당관 1차/2차 심사 (07월~09월)",
+            "예산담당관 시비 매칭 승인 (사전/사후)"
+          ],
+          "allowed_values": null,
+          "max_length": 150
+        },
+        {
+          "name": "council_route",
+          "korean": "시의회 처리 경로",
+          "type": "string",
+          "required": true,
+          "description": "시의회 상임위·예결위·본회의 처리 경로 및 예상 시기",
+          "examples": [
+            "시의회 제출 (11월 04일) -> 의결 (12월 15일)",
+            "시의회 임시회 심사 및 의결 (03월~04월)"
+          ],
+          "format": "위원회명 (MM월) -> 의결 (MM월)",
+          "max_length": 150
+        },
+        {
+          "name": "next_available_window",
+          "korean": "다음 기회 시기",
+          "type": "string",
+          "required": true,
+          "description": "현 기준일 이후 가장 가까운 다음 해당 결정 유형의 착수 가능 시기",
+          "examples": ["2027년도 본예산 (2026년 04월 착수)", "수시 (공모 공고 발생 시)"],
+          "max_length": 80,
+          "notes": "정책핏 서비스 제공 최적 타이밍 산출용"
+        },
+        {
+          "name": "source",
+          "korean": "근거 출처",
+          "type": "string",
+          "required": true,
+          "description": "해당 일정 정보의 공식 근거 문서명 또는 URL",
+          "examples": [
+            "인천광역시 예산편성 일정 공고 (https://www.incheon.go.kr)",
+            "인천광역시 추경 예산안 보도자료"
+          ],
+          "max_length": 300,
+          "notes": "URL 포함 시 괄호 안에 병기"
+        },
+        {
+          "name": "confirmed_or_inferred",
+          "korean": "확인여부",
+          "type": "enum",
+          "required": true,
+          "description": "해당 일정이 공식 문서로 확인된 것인지, 관행 추론인지 구분",
+          "allowed_values": ["CONFIRMED", "INFERRED"],
+          "value_definitions": {
+            "CONFIRMED": "공식 공고·법령·지침에서 날짜 또는 기간이 명시적으로 확인됨",
+            "INFERRED": "관례·전년도 패턴·담당자 구술 등으로 추정한 시기"
+          }
+        }
+      ]
+    }
+
+  ],
+
+  "shared_rules": {
+    "claim_status_labels": ["사실", "추론", "가설", "미확인"],
+    "existing_project_consideration_states": [
+      "EXPLICIT",
+      "REFERENCED",
+      "INFERRED",
+      "NOT_PUBLICLY_VERIFIABLE"
+    ],
+    "forbidden_conclusions": [
+      "공개자료에서 검색되지 않는다는 이유만으로 '사업이 없다', '고려하지 않았다', '성과가 없다'고 결론 내리지 않는다.",
+      "데이터 미수집 시 0점이 아닌 '미측정', '기관협약 필요', '정의되지 않음'으로 처리한다."
+    ],
+    "url_policy": "source_url 또는 canonical_url이 없는 행은 등록 금지",
+    "date_format": "YYYY-MM-DD",
+    "encoding": "UTF-8",
+    "delimiter": ","
+  }
+}
